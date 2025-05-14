@@ -50,36 +50,6 @@ export class OpenaiService {
     return content;
   }
 
-  parseProductsPromptResult(text: string): {
-    product: string;
-    fats: number;
-    carbs: number;
-    proteins: number;
-    weight: number;
-    calories: number;
-    error: string;
-  }[] {
-    try {
-      const response = JSON.parse(text);
-
-      return response.products.map(
-        ({ product, weight, calories, proteins, fats, carbs, error }) => {
-          return {
-            weight: Math.round(Number.parseFloat(weight)),
-            calories: Math.round(Number.parseFloat(calories)),
-            proteins: Math.round(Number.parseFloat(proteins)),
-            fats: Math.round(Number.parseFloat(fats)),
-            carbs: Math.round(Number.parseFloat(carbs)),
-            product,
-            error,
-          };
-        },
-      );
-    } catch (e) {
-      this.logger.error(`ERROR: ${e.message}. Input text: ${text}`, e.stack);
-    }
-  }
-
   async transcript(url: string) {
     const filename = `${uuid()}.ogg`;
     const fileResponse = await axios({

@@ -15,19 +15,10 @@ export class MainScene {
   @SceneEnter()
   async onSceneEnter(@Ctx() ctx: Context) {
     try {
-      const BASE_URL = this.configService.get("FRONT_END_URL");
-      const telegramId = ctx.from.id;
-
       await ctx.reply(
-        "Головне меню",
+        "Main menu",
         Markup.keyboard([
           [Markup.button.text(ENDPOINTS.TODAY)],
-          [
-            Markup.button.webApp(
-              ENDPOINTS.HISTORY,
-              `${BASE_URL}/dashboard/${telegramId}`
-            ),
-          ],
           [
             Markup.button.text(ENDPOINTS.SETTINGS),
             Markup.button.text(ENDPOINTS.FEEDBACK),

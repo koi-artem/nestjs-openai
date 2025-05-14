@@ -1,9 +1,6 @@
 export const ENDPOINTS = {
-  TODAY: "Мій раціон сьогодні 🍛",
-  HISTORY: "Дивитись історію 📈",
-  SETTINGS: "Налаштування 🛠️",
-  FEEDBACK: "Залишити відгук 💬",
-  CONFIGURE_PROFILE: "Налаштувати профіль 🪄",
-  CONTACTS: "Обратний зв'язок 📞",
-  MAIN: "👈 Повернутись до головного меню",
+  TODAY: "Action button",
+  SETTINGS: "Settings 🛠️",
+  FEEDBACK: "Feedback 💬",
+  MAIN: "👈 Back to menu",
 } as const;

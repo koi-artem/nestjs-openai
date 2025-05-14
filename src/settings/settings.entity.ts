@@ -6,6 +6,12 @@ export class Settings {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column()
+  gender: number;
+
+  @Column()
+  age: number;
+
   @Column({
     type: 'timestamp',
     default: () => 'NOW()',

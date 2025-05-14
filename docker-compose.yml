@@ -13,9 +13,9 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: calories3322
-      POSTGRES_USER: calories
-      POSTGRES_DB: calories
+      POSTGRES_USER: boilerplateuser
+      POSTGRES_PASSWORD: boilerplatepassword
+      POSTGRES_DB: boilerplatedb
       POSTGRES_PORT: 5432
     ports:
       - 5432:5432

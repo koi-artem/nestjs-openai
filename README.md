@@ -1,10 +1,5 @@
 ## Prerequisites
 
-### ffmpeg
-
-```
-brew install ffmpeg
-```
 ### ngrok
 Must install ngrok for webhook connection
 You must be registered and authenticated, so you can have static URL
@@ -19,10 +14,14 @@ OPENAI_API_KEY
 TELEGRAM_BOT_TOKEN=<get this from @BotFather>
 TELEGRAM_BOT_DOMAIN=<ngrok personal public URL>
 TELEGRAM_BOT_PATH=/bot
-AIRTABLE_API_KEY=<https://airtable.com/create/tokens>
-AIRTABLE_BASE=<https://airtable.com/developers/web/api/introduction>
 CONTACT_TELEGRAM=<Owner's telegram>
 CONTACT_INSTAGRAM=<Owner's instagram>
+
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=boilerplateuser
+POSTGRES_PASSWORD=boilerplatepassword
+POSTGRES_DATABASE=boilerplatedb
 ```
 
 ## Installation
@@ -35,6 +34,9 @@ $ npm install
 
 ```bash
 # development
+$ docker-compose up -d
+$ npm run migration:generate
+$ npm run migration:run
 $ npm run start
 
 # watch mode

@@ -8,7 +8,7 @@ import { SettingsService } from '../../settings/settings.service';
 import { Settings } from '../../settings/settings.entity';
 
 const renderSettings = (settings: Settings) => {
-  return `Налаштування: ${JSON.stringify(settings)}`;
+  return `Current settings:\n ${JSON.stringify(settings)}`;
 };
 
 @Scene(SCENE_ID.SETTINGS)
@@ -20,7 +20,7 @@ export class SettingsScene {
   @SceneEnter()
   async onSceneEnter(@Ctx() ctx: Context) {
     try {
-      await ctx.reply('Налаштування', {
+      await ctx.reply('Settings menu', {
         ...Markup.keyboard([Markup.button.text(ENDPOINTS.MAIN)]).resize(),
       });
     } catch (e) {
@@ -32,23 +32,10 @@ export class SettingsScene {
         ctx.from.id.toString(),
       );
 
-      if (!settings) {
-        await ctx.reply(
-          'Щоб налаштувати свій профіль, Оберіть опцію "Налаштувати профіль"',
-          Markup.inlineKeyboard([
-            {
-              text: 'Налаштувати профіль',
-              callback_data: 'main_settings',
-            },
-          ]),
-        );
-        return;
-      }
-
       const buttons = [
         [
           {
-            text: 'Налаштувати профіль',
+            text: 'Configure profile',
             callback_data: 'main_settings',
           },
         ],

@@ -10,22 +10,17 @@ import {
 import { SCENE_ID } from '../app.constants';
 import { Context } from '../interfaces/context.interface';
 import { Logger } from '@nestjs/common';
-import { OpenaiService } from '../openai/openai.service';
 import { ENDPOINTS } from './bot.endpoints';
-import { SettingsService } from '../settings/settings.service';
 
 @Update()
 export class BotUpdate {
   private readonly logger = new Logger(BotUpdate.name, { timestamp: true });
 
-  constructor(
-    private readonly settingsService: SettingsService,
-    private readonly openAiService: OpenaiService,
-  ) {}
+  constructor() {}
 
   @Start()
   async startCommand(ctx: Context) {
-    try {;
+    try {
       await ctx.scene.enter(SCENE_ID.MAIN);
     } catch (e) {
       this.logger.error(e.message, e.stack);
@@ -63,7 +58,7 @@ export class BotUpdate {
   @On('text')
   async onText(@Ctx() ctx: Context, @Message('text') text: string) {
     try {
-      return ctx.reply(text);
+      await ctx.reply(`Echo: ${text}`);
     } catch (e) {
       this.logger.error(e.message, e.stack);
     }

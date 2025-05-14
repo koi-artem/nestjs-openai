@@ -11,12 +11,13 @@ export class FeedbackWizard {
   private readonly logger = new Logger(FeedbackWizard.name, {
     timestamp: true,
   });
+
   constructor(private readonly feedbackService: FeedbackService) {}
   @WizardStep(1)
   async onSceneEnter(@Ctx() ctx: WizardContext): Promise<void> {
     ctx.wizard.next();
     await ctx.reply(
-      'Будь ласка, поділіться своєю думкою про наш чат-бот! Напишіть свій відгук в одному повідомленні — ваша думка дуже важлива для нас і допоможе зробити бота ще кращим. 😊',
+      'Your feedback is valuable for us! What\'s on your mind?',
       Markup.removeKeyboard(),
     );
   }
@@ -34,7 +35,7 @@ export class FeedbackWizard {
         ctx.from.id.toString(),
         feedback,
       );
-      await ctx.reply('Дякуємо за Ваш відгук! ✨');
+      await ctx.reply('Thanks for the feedback! ✨');
     } catch (e) {
       this.logger.error(e.message, e.stack);
     } finally {
@@ -44,6 +45,6 @@ export class FeedbackWizard {
 
   @On('audio')
   async onAudio(@Ctx() ctx: Context) {
-    return 'Перепрошую, але відгук можна залишити лише текстом 🫣';
+    return 'Please leave a text message 🫣';
   }
 }
